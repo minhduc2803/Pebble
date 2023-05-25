@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { RegistingUser, User } from 'app/types/user';
 
 import styles from './Nav.module.css';
+import { register } from 'app/api/users';
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -29,14 +30,18 @@ const Nav = () => {
   }, [navigate]);
 
   const onSubmit = (values: RegistingUser) => {
+    console.log('values', values);
+    register(values);
     localStorage.setItem(
       'user',
       JSON.stringify({
+        fullName: values.fullName,
         email: values.email,
         token: values.password,
       }),
     );
     setUser({
+      fullName: values.fullName,
       email: values.email,
       token: values.password,
     });
@@ -53,11 +58,12 @@ const Nav = () => {
       onSubmit={onSubmit}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit} className={styles.nav}>
-          <Field name="email" component="input" placeholder="email" />
+          <Field name="fullName" component="input" placeholder="Full Name" />
+          <Field name="email" component="input" placeholder="Email" />
           <Field
             name="password"
             component="input"
-            placeholder="password"
+            placeholder="Password"
             type="password"
           />
           <button type="submit">Login / Register</button>

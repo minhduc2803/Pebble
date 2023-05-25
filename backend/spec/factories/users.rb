@@ -7,6 +7,7 @@
 #  password_digest :string           default(""), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  full_name       :string           not null
 #
 # Indexes
 #
