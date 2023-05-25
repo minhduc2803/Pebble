@@ -8,7 +8,7 @@ resource 'Sessions' do
 
   let(:user) { create(:user) }
 
-  route 'api/v1/users/sign_in', 'Session' do
+  route 'users/sign_in', 'Session' do
     let(:request) do
       {
         user:
@@ -36,7 +36,7 @@ resource 'Sessions' do
     end
   end
 
-  route 'api/v1/users/sign_out', 'Session' do
+  route 'users/sign_out', 'Session' do
     let(:user) { create(:user) }
 
     delete 'Delete' do

@@ -1,57 +1,70 @@
-import * as React from 'react';
-import styled from 'styled-components/macro';
-import { ReactComponent as DocumentationIcon } from './assets/documentation-icon.svg';
-import { ReactComponent as GithubIcon } from './assets/github-icon.svg';
+import { useState, useEffect, useCallback } from 'react';
+import { Field, Form } from 'react-final-form';
+import { useNavigate } from 'react-router-dom';
 
-export function Nav() {
-  return (
-    <Wrapper>
-      <Item
-        href="https://cansahin.gitbook.io/react-boilerplate-cra-template/"
-        target="_blank"
-        title="Documentation Page"
-        rel="noopener noreferrer"
-      >
-        <DocumentationIcon />
-        Documentation
-      </Item>
-      <Item
-        href="https://github.com/react-boilerplate/react-boilerplate-cra-template"
-        target="_blank"
-        title="Github Page"
-        rel="noopener noreferrer"
-      >
-        <GithubIcon />
-        Github
-      </Item>
-    </Wrapper>
+import { RegistingUser, User } from 'app/types/user';
+
+import styles from './Nav.module.css';
+
+const Nav = () => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState<User>();
+
+  useEffect(() => {
+    const userSrting = localStorage.getItem('user');
+    if (!userSrting) return;
+    const user = JSON.parse(userSrting);
+    if (user) {
+      setUser(user);
+    }
+  }, []);
+
+  const logout = useCallback(() => {
+    localStorage.setItem('user', '');
+    setUser(undefined);
+  }, []);
+
+  const goToSharePage = useCallback(() => {
+    navigate('/share');
+  }, [navigate]);
+
+  const onSubmit = (values: RegistingUser) => {
+    localStorage.setItem(
+      'user',
+      JSON.stringify({
+        email: values.email,
+        token: values.password,
+      }),
+    );
+    setUser({
+      email: values.email,
+      token: values.password,
+    });
+  };
+
+  return user ? (
+    <div className={styles.nav}>
+      <div>Welcome {user.email}</div>
+      <button onClick={goToSharePage}>Share a movie</button>
+      <button onClick={logout}>Logout</button>
+    </div>
+  ) : (
+    <Form
+      onSubmit={onSubmit}
+      render={({ handleSubmit }) => (
+        <form onSubmit={handleSubmit} className={styles.nav}>
+          <Field name="email" component="input" placeholder="email" />
+          <Field
+            name="password"
+            component="input"
+            placeholder="password"
+            type="password"
+          />
+          <button type="submit">Login / Register</button>
+        </form>
+      )}
+    />
   );
-}
+};
 
-const Wrapper = styled.nav`
-  display: flex;
-  margin-right: -1rem;
-`;
-
-const Item = styled.a`
-  color: ${p => p.theme.primary};
-  cursor: pointer;
-  text-decoration: none;
-  display: flex;
-  padding: 0.25rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  align-items: center;
-
-  &:hover {
-    opacity: 0.8;
-  }
-
-  &:active {
-    opacity: 0.4;
-  }
-
-  .icon {
-    margin-right: 0.25rem;
-  }
-`;
+export default Nav;

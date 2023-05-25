@@ -1,16 +1,40 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
+  include ActAsApiRequest
   include Pundit::Authorization
+  include Knock::Authenticable
 
-  after_action :verify_authorized,
-               except: :index,
-               unless: -> { :devise_controller? || :active_admin_controller? }
-  after_action :verify_policy_scoped,
-               only: :index,
-               unless: -> { :devise_controller? || :active_admin_controller? }
-  # Prevent CSRF attacks by raising an exception.
-  protect_from_forgery with: :exception
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
 
-  def active_admin_controller?
-    is_a?(ActiveAdmin::BaseController)
+  before_action :authenticate_user!, except: :status
+  skip_after_action :verify_authorized, only: :status
+
+  before_action :authenticate_user
+  # skip the CSRF protection
+  skip_before_action :verify_authenticity_token, raise: false
+
+  rescue_from ActiveRecord::RecordNotFound,        with: :render_not_found
+  rescue_from ActiveRecord::RecordInvalid,         with: :render_record_invalid
+  rescue_from ActionController::ParameterMissing,  with: :render_parameter_missing
+
+  def status
+    render json: { online: true }
+  end
+
+  private
+
+  def render_not_found(exception)
+    logger.info { exception } # for logging
+    render json: { error: I18n.t('api.errors.not_found') }, status: :not_found
+  end
+
+  def render_record_invalid(exception)
+    logger.info { exception } # for logging
+    render json: { errors: exception.record.errors.as_json }, status: :bad_request
+  end
+
+  def render_parameter_missing(exception)
+    logger.info { exception } # for logging
+    render json: { error: I18n.t('api.errors.missing_param') }, status: :unprocessable_entity
   end
 end

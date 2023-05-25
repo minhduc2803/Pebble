@@ -8,7 +8,7 @@ resource 'Settings' do
 
   let(:user) { create(:user) }
 
-  route 'api/v1/settings/must_update', 'Must Update' do
+  route 'settings/must_update', 'Must Update' do
     let(:request) do
       {
         device_version: '1.0'

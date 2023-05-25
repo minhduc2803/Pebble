@@ -12,7 +12,6 @@ ExceptionHunter.setup do |config|
   # case you are not satisfied with the default one. You can also remove the
   # configuration if you wish to have no access restrictions for the dashboard.
   #
-  # config.admin_user_class = 'AdminUser'
 
   # == Current User
   #

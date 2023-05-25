@@ -8,7 +8,7 @@ resource 'Users' do
 
   let(:user) { create(:user) }
 
-  route 'api/v1/users', 'Create User' do
+  route 'users', 'Create User' do
     let(:request) { { user: attributes_for(:user), format: :json } }
 
     post 'Create' do
@@ -27,7 +27,7 @@ resource 'Users' do
     end
   end
 
-  route 'api/v1/user', 'Show User' do
+  route 'user', 'Show User' do
     get 'Show' do
       example 'Ok' do
         do_request
@@ -37,7 +37,7 @@ resource 'Users' do
     end
   end
 
-  route 'api/v1/user', 'Update User' do
+  route 'user', 'Update User' do
     let(:request) { { user: { username: 'new username' } } }
 
     put 'Update' do

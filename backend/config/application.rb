@@ -33,6 +33,7 @@ module App
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.add_autoload_paths_to_load_path = false
+    config.autoloader = :classic
 
     ActionMailer::Base.smtp_settings = {
       address: 'smtp.sendgrid.net',

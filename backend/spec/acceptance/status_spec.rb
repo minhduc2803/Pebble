@@ -3,7 +3,7 @@ require_relative '../support/acceptance_tests_helper'
 resource 'Status' do
   header 'Content-Type', 'application/json'
 
-  route 'api/v1/status', 'Status' do
+  route 'status', 'Status' do
     get 'Get' do
       example 'Ok' do
         do_request

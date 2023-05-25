@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createRenderer } from 'react-test-renderer/shallow';
-import { NavBar } from '../index';
+import NavBar from '../NavBar';
 
 const shallowRenderer = createRenderer();
 
