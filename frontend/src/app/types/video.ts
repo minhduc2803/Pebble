@@ -4,6 +4,7 @@ export type Video = {
   title: string;
   description: string;
   user: {
+    id: number;
     fullName: string;
     email: string;
   };

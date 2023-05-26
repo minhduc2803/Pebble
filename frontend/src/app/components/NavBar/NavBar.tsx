@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
 import { User } from 'app/types/user';
-import LoginModal from './authorization/LoginModal';
+
 import ShareVideoModal from './shareVideo/ShareVideoModal';
+import LoginModal from './authorization/LoginModal';
 
 import styles from './NavBar.module.css';
 

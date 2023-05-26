@@ -1,4 +1,4 @@
-import { login, register } from 'app/actions/user';
+import { register } from 'app/actions/user';
 import { RegisterFormData } from 'app/types/user';
 import { Button, Modal } from 'react-bootstrap';
 import { Field, Form } from 'react-final-form';

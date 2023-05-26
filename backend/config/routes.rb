@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   post   '/users/create'   => 'users#create'
   get 'videos' => 'videos#index'
   post 'videos' => 'videos#create'
+
+  mount ActionCable.server => '/cable'
 end
