@@ -23,7 +23,7 @@ const VideoComponent = ({ video }: VideoComponentProps) => {
       </div>
       <div>
         <div className={styles.title}>{video.title}</div>
-        <div className={styles.fullName}>
+        <div>
           Shared by: <b>{video.user.fullName}</b>
         </div>
         <div>Email: {video.user.email}</div>
