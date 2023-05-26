@@ -5,6 +5,12 @@ import _ from 'lodash';
 const api = axios.create();
 
 api.interceptors.request.use(config => {
+  const userSrting = localStorage.getItem('user');
+  let token = null;
+  if (userSrting) {
+    const user = JSON.parse(userSrting);
+    token = user.token;
+  }
   if (config.data) {
     config.data = tranformObjectKeys(config.data, _.snakeCase);
   }

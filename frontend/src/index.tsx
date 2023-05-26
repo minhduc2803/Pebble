@@ -16,18 +16,13 @@ import FontFaceObserver from 'fontfaceobserver';
 // Use consistent styling
 import 'sanitize.css/sanitize.css';
 
-import { App } from 'app';
-
-import { HelmetProvider } from 'react-helmet-async';
-
-import { configureAppStore } from 'store/configureStore';
-
-import { ThemeProvider } from 'styles/theme/ThemeProvider';
+import { App } from 'app/App';
 
 import reportWebVitals from 'reportWebVitals';
 
 // Initialize languages
 import './locales/i18n';
+import store from 'app/redux/store';
 
 // Observe loading of Inter (to remove 'Inter', remove the <link> tag in
 // the index.html file and this observer)
@@ -38,20 +33,13 @@ openSansObserver.load().then(() => {
   document.body.classList.add('fontLoaded');
 });
 
-const store = configureAppStore();
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
 root.render(
   <Provider store={store}>
-    <ThemeProvider>
-      <HelmetProvider>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </HelmetProvider>
-    </ThemeProvider>
+    <App />
   </Provider>,
 );
 
