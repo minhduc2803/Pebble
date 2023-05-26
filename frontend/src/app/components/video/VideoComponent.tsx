@@ -22,12 +22,17 @@ const VideoComponent = ({ video }: VideoComponentProps) => {
         />
       </div>
       <div>
-        <div>{video.title}</div>
-        <div>
-          Shared by: {video.user.fullName} - {video.user.email}
+        <div className={styles.title}>{video.title}</div>
+        <div className={styles.fullName}>
+          Shared by: <b>{video.user.fullName}</b>
         </div>
-        <div>Description:</div>
-        <div>{video.description}</div>
+        <div>Email: {video.user.email}</div>
+        {!!video.description && (
+          <>
+            <div>Description:</div>
+            <div className={styles.description}>{video.description}</div>
+          </>
+        )}
       </div>
     </div>
   );

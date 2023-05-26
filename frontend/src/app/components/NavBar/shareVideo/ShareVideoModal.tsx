@@ -1,10 +1,17 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Form } from 'react-final-form';
+import { Button, Modal } from 'react-bootstrap';
+
 import { shareVideo } from 'app/actions/video';
 import { VideoFormData } from 'app/types/video';
 import { alertSuccess } from 'app/utils/alert';
-import { useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
-import { Field, Form } from 'react-final-form';
-import { useDispatch } from 'react-redux';
+
+import Field from 'app/components/form/Field';
+import TextAreaField from 'app/components/form/TextAreaField';
+import SubmitButton from 'app/components/form/SubmitButton';
+
+import styles from './ShareVideoModal.module.css';
 
 const ShareVideoModal = () => {
   const dispatch = useDispatch();
@@ -36,23 +43,12 @@ const ShareVideoModal = () => {
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <Modal.Body>
-                <div>
-                  <label>Youtube URL</label>
-                  <Field name="url" component="input" />
-                </div>
-                <div>
-                  <label>Title</label>
-                  <Field name="title" component="input" />
-                </div>
-                <div>
-                  <label>Desription</label>
-                  <Field name="desription" component="textarea" />
-                </div>
+                <Field name="url" component="input" label="Youtube URL" />
+                <Field name="title" component="input" label="Title" />
+                <TextAreaField name="desription" label="Desription" />
               </Modal.Body>
-              <Modal.Footer>
-                <Button variant="light" type="submit">
-                  Share
-                </Button>
+              <Modal.Footer className={styles.footer}>
+                <SubmitButton>Share</SubmitButton>
               </Modal.Footer>
             </form>
           )}

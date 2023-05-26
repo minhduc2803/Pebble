@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, ButtonGroup, Modal } from 'react-bootstrap';
 
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
@@ -24,21 +24,23 @@ const LoginModal = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>
-            <Button
-              variant="light"
-              active={isLoginForm}
-              onClick={chooseLoginForm}
-            >
-              Login
-            </Button>
-            <Button
-              variant="light"
-              active={!isLoginForm}
-              onClick={chooseRegisterForm}
-            >
-              Register
-            </Button>
+          <Modal.Title className={styles.modalTitle}>
+            <ButtonGroup className={styles.buttonGroup}>
+              <Button
+                variant="light"
+                active={isLoginForm}
+                onClick={chooseLoginForm}
+              >
+                Login
+              </Button>
+              <Button
+                variant="light"
+                active={!isLoginForm}
+                onClick={chooseRegisterForm}
+              >
+                Register
+              </Button>
+            </ButtonGroup>
           </Modal.Title>
         </Modal.Header>
         {isLoginForm ? (

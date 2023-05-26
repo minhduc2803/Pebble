@@ -1,7 +1,9 @@
 import { register } from 'app/actions/user';
+import Field from 'app/components/form/Field';
+import Form from 'app/components/form/Form';
+import SubmitButton from 'app/components/form/SubmitButton';
 import { RegisterFormData } from 'app/types/user';
-import { Button, Modal } from 'react-bootstrap';
-import { Field, Form } from 'react-final-form';
+import { Modal } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
 type RegisterFormProps = {
@@ -17,28 +19,21 @@ const RegisterForm = ({ className, onSuccess }: RegisterFormProps) => {
   };
 
   return (
-    <Form
-      onSubmit={onSubmit}
-      render={({ handleSubmit }) => (
-        <form onSubmit={handleSubmit} className={className}>
-          <Modal.Body>
-            <Field name="fullName" component="input" placeholder="Full Name" />
-            <Field name="email" component="input" placeholder="Email" />
-            <Field
-              name="password"
-              component="input"
-              placeholder="Password"
-              type="password"
-            />
-            <Modal.Footer>
-              <Button variant="light" type="submit">
-                Register
-              </Button>
-            </Modal.Footer>
-          </Modal.Body>
-        </form>
-      )}
-    />
+    <Form onSubmit={onSubmit} className={className}>
+      <Modal.Body>
+        <Field name="fullName" component="input" label="Full Name" />
+        <Field name="email" component="input" label="Email" />
+        <Field
+          name="password"
+          component="input"
+          label="Password"
+          type="password"
+        />
+      </Modal.Body>
+      <Modal.Footer>
+        <SubmitButton>Register</SubmitButton>
+      </Modal.Footer>
+    </Form>
   );
 };
 

@@ -4,6 +4,7 @@ import { User } from 'app/types/user';
 import ShareVideoModal from './shareVideo/ShareVideoModal';
 import LoginModal from './authorization/LoginModal';
 import LogoutButton from './LogoutButton';
+import { ReactComponent as Logo } from 'app/images/logo.svg';
 
 import styles from './NavBar.module.css';
 
@@ -17,12 +18,13 @@ const NavBar = () => {
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>
-        <div>
-          <div>Pebble</div>
+        <div className={styles.brand}>
+          <Logo />
+          <div>Pebble App</div>
         </div>
         {isUserLogin ? (
           <div className={styles.nav}>
-            Welcome {user.fullName}
+            Welcome <b>{user.fullName}</b>
             <ShareVideoModal />
             <LogoutButton />
           </div>

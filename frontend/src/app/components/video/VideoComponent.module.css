@@ -3,3 +3,18 @@
   gap: 16px;
   width: 840px;
 }
+
+.title {
+  color:chocolate;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.fullName {
+
+}
+
+.description {
+  font-size: 14px;
+  padding-left: 8px;
+}

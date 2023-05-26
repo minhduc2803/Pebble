@@ -1,6 +1,14 @@
-.nav {
+.form :global(.modal-footer) {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 4px;
+  justify-content: center;
+  padding: 8px 0;
+}
+
+.modalTitle {
+  width: 100%;
+  padding: 0 16px;
+}
+
+.buttonGroup {
+  width: 100%;
 }
