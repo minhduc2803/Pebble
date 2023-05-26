@@ -1,4 +1,7 @@
-export const tranformObjectKeys = (object, method) => {
+export const tranformObjectKeys = (
+  object: any,
+  method: (key: string) => string,
+) => {
   if (Array.isArray(object)) {
     return object.map(value => tranformObjectKeys(value, method));
   }
