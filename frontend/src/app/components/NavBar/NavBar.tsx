@@ -3,6 +3,7 @@ import { User } from 'app/types/user';
 
 import ShareVideoModal from './shareVideo/ShareVideoModal';
 import LoginModal from './authorization/LoginModal';
+import LogoutButton from './LogoutButton';
 
 import styles from './NavBar.module.css';
 
@@ -20,9 +21,10 @@ const NavBar = () => {
           <div>Pebble</div>
         </div>
         {isUserLogin ? (
-          <div>
+          <div className={styles.nav}>
             Welcome {user.fullName}
             <ShareVideoModal />
+            <LogoutButton />
           </div>
         ) : (
           <LoginModal />

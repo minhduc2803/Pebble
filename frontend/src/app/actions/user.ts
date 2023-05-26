@@ -1,5 +1,5 @@
 import api from 'app/api/api';
-import { LOGIN_ACTION } from 'app/redux/actions/type';
+import { LOGIN_ACTION, LOGOUT_ACTION } from 'app/redux/actions/type';
 import { LoginFormData, RegisterFormData } from 'app/types/user';
 import { alertError } from 'app/utils/alert';
 import { AxiosError } from 'axios';
@@ -45,3 +45,14 @@ export const register =
       }
     }
   };
+
+export const loginWithToken = () => async dispatch => {
+  try {
+    const data = await api.get('http://localhost:3000/users/user_info');
+    dispatch({ type: LOGIN_ACTION, payload: data.data });
+  } catch (error) {}
+};
+
+export const logout = () => dispatch => {
+  dispatch({ type: LOGOUT_ACTION });
+};

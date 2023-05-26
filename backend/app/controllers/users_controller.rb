@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user,  only: [:create]
-  before_action :authorize_user, only: [:create]
+  before_action :authorize_user_class, only: [:create]
+  before_action :authorize_user, only: [:user_info]
   
   def create
     user = User.new(user_params)
@@ -17,13 +18,26 @@ class UsersController < ApplicationController
     end
   end
   
+  def user_info
+    render json: {
+      id: current_user.id,
+      token: token = request.headers['Authorization']&.split(' ')&.last,
+      full_name: current_user.full_name,
+      email: current_user.email,
+    }
+  end
+
   private
   
   def user_params
     params.require(:user).permit(:full_name, :email, :password)
   end
 
-  def authorize_user
+  def authorize_user_class
     authorize User
+  end
+
+  def authorize_user
+    authorize current_user
   end
 end

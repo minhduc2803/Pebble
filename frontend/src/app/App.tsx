@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage/HomePage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 import './App.css';
+import Root from './Root';
 
 export function App() {
   return (
@@ -24,8 +25,10 @@ export function App() {
         theme="light"
       />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/" element={<Root />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

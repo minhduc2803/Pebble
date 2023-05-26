@@ -7,7 +7,7 @@ class VideosController < ApplicationController
     videos = videos.map do |video|
       video.attributes.merge({
         user: {
-          id: current_user.id,
+          id: video.user.id,
           full_name: video.user.full_name,
           email: video.user.email
         }
