@@ -1,4 +1,5 @@
 class VideosController < ApplicationController
+  skip_before_action :authenticate_user,  only: [:index]
   before_action :authorize_user, only: [:create]
 
   def index

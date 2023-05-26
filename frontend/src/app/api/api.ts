@@ -10,6 +10,10 @@ api.interceptors.request.use(config => {
   if (userSrting) {
     const user = JSON.parse(userSrting);
     token = user.token;
+
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
   }
   if (config.data) {
     config.data = tranformObjectKeys(config.data, _.snakeCase);
