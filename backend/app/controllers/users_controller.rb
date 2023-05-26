@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   def user_info
     render json: {
       id: current_user.id,
-      token: token = request.headers['Authorization']&.split(' ')&.last,
+      token: request.headers['Authorization']&.split(' ')&.last,
       full_name: current_user.full_name,
       email: current_user.email,
     }
