@@ -15,6 +15,7 @@
 #
 
 class User < ApplicationRecord
+  has_many :videos, dependent: :destroy
   has_secure_password
 
   validates_presence_of     :email
