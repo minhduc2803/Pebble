@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { Field, Form } from 'react-final-form';
 
-import styles from './LoginModal.module.css';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
+
+import styles from './LoginModal.module.css';
 
 const LoginModal = () => {
   const [show, setShow] = useState(false);

@@ -2,7 +2,7 @@ export const tranformObjectKeys = (object, method) => {
   if (Array.isArray(object)) {
     return object.map(value => tranformObjectKeys(value, method));
   }
-  if (typeof object === 'object') {
+  if (typeof object === 'object' && object !== null && object !== undefined) {
     const entries = Object.entries(object);
     return Object.fromEntries(entries.map(transfromEntry));
   }

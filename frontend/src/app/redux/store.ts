@@ -9,7 +9,7 @@ import videos from './reducers/video';
 
 const rootReducer = combineReducers({
   user,
-  videos
+  videos,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

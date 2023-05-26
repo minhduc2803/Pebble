@@ -1,17 +1,14 @@
-import * as React from 'react';
-import styled from 'styled-components/macro';
 import { P } from './P';
 import { Link } from 'app/components/Link';
 import NavBar from 'app/components/NavBar/NavBar';
-import { Helmet } from 'react-helmet-async';
 
 const NotFoundPage = () => {
   return (
     <>
-      <Helmet>
+      <div>
         <title>404 Page Not Found</title>
         <meta name="description" content="Page not found" />
-      </Helmet>
+      </div>
       <NavBar />
       <div>
         <div>
