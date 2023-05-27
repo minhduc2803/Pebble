@@ -20,7 +20,7 @@ const NavBar = () => {
       <div className={styles.wrapper}>
         <div className={styles.brand}>
           <Logo />
-          <div>Pebble App</div>
+          <div>Pebble</div>
         </div>
         {isUserLogin ? (
           <div className={styles.nav}>

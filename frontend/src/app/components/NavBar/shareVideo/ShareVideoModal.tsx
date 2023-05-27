@@ -45,7 +45,7 @@ const ShareVideoModal = () => {
               <Modal.Body>
                 <Field name="url" component="input" label="Youtube URL" />
                 <Field name="title" component="input" label="Title" />
-                <TextAreaField name="desription" label="Desription" />
+                <TextAreaField name="description" label="Desription" />
               </Modal.Body>
               <Modal.Footer className={styles.footer}>
                 <SubmitButton>Share</SubmitButton>

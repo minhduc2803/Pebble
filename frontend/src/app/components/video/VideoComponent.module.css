@@ -4,6 +4,10 @@
   width: 100%;
 }
 
+.videoInfo {
+  max-width: calc(100% - 480px - 16px);
+}
+
 .title {
   color:chocolate;
   font-size: 18px;
@@ -13,4 +17,6 @@
 .description {
   font-size: 14px;
   padding-left: 8px;
+  max-width: calc(100% - 8px);
+  word-wrap: break-word;
 }

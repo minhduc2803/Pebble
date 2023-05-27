@@ -2,6 +2,7 @@ class VideosController < ApplicationController
   skip_before_action :authenticate_user,  only: [:index]
   before_action :authorize_user, only: [:create]
 
+  # GET /videos
   def index
     videos = policy_scope(Video).includes(:user).order(created_at: :desc)
     videos = videos.map do |video|
@@ -16,6 +17,7 @@ class VideosController < ApplicationController
     render json: { videos: videos }, status: :ok
   end
 
+  # POST /videos
   def create
     video = current_user.videos.new(video_params)
     if video.save

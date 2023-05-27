@@ -4,6 +4,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def user_info?
-    @record.present?
+    @user.id == @record.id
   end
 end

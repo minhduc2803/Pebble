@@ -22,7 +22,7 @@ export const register =
   (user: RegisterFormData, onSuccess?: () => void) =>
   async (dispatch, getState) => {
     try {
-      const data = await api.post('http://localhost:3000/users/create', {
+      const data = await api.post('http://localhost:3000/users', {
         user,
       });
       dispatch({ type: LOGIN_ACTION, payload: data.data });

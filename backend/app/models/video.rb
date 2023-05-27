@@ -13,4 +13,7 @@
 class Video < ApplicationRecord
   belongs_to :user
   scope :of_user, -> (user) { where(user_id: user.id)}
+
+  validates_presence_of     :url
+  validates_presence_of     :title
 end

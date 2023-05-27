@@ -18,7 +18,8 @@ class User < ApplicationRecord
   has_many :videos, dependent: :destroy
   has_secure_password
 
-  validates_presence_of     :email
+  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates_presence_of     :full_name
   validates_uniqueness_of   :email
+  validates :password, length: { minimum: 8 }
 end

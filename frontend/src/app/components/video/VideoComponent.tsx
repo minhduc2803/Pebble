@@ -21,7 +21,7 @@ const VideoComponent = ({ video }: VideoComponentProps) => {
           title="Embedded youtube"
         />
       </div>
-      <div>
+      <div className={styles.videoInfo}>
         <div className={styles.title}>{video.title}</div>
         <div>
           Shared by: <b>{video.user.fullName}</b>
