@@ -2,7 +2,9 @@ import { tranformObjectKeys } from 'app/utils/objectUtils';
 import axios from 'axios';
 import _ from 'lodash';
 
-const api = axios.create();
+const api = axios.create({
+  baseURL: process.env.REACT_APP_BACKEND_URL,
+});
 
 api.interceptors.request.use(config => {
   const token = localStorage.getItem('token');

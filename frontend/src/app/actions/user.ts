@@ -8,7 +8,7 @@ export const login =
   (user: LoginFormData, onSuccess?: () => void) =>
   async (dispatch, getState) => {
     try {
-      const data = await api.post('http://localhost:3000/user_token', {
+      const data = await api.post('/user_token', {
         auth: user,
       });
       dispatch({ type: LOGIN_ACTION, payload: data.data });
@@ -22,7 +22,7 @@ export const register =
   (user: RegisterFormData, onSuccess?: () => void) =>
   async (dispatch, getState) => {
     try {
-      const data = await api.post('http://localhost:3000/users', {
+      const data = await api.post('/users', {
         user,
       });
       dispatch({ type: LOGIN_ACTION, payload: data.data });
@@ -48,7 +48,7 @@ export const register =
 
 export const loginWithToken = () => async dispatch => {
   try {
-    const data = await api.get('http://localhost:3000/users/user_info');
+    const data = await api.get('/users/user_info');
     dispatch({ type: LOGIN_ACTION, payload: data.data });
   } catch (error) {}
 };

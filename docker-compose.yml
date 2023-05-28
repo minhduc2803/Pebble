@@ -1,0 +1,31 @@
+version: '3.0'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 8002:3002
+    env_file:
+      - .env.frontend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 8000:3000
+    depends_on:
+      - database
+    env_file:
+      - .env.backend
+  database:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: <%= ENV['DATABASE_USERNAME'] %>
+      POSTGRES_PASSWORD: <%= ENV['DATABASE_PASSWORD'] %>
+      POSTGRES_DB: <%= ENV['DATABASE_NAME'] %>
+    volumes:
+      - db_data:/var/lib/postgresql/data
+volumes:
+  db_data:
