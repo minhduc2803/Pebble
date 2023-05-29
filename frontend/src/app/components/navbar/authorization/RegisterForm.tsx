@@ -6,7 +6,7 @@ import Field from 'app/components/form/Field';
 import Form from 'app/components/form/Form';
 import SubmitButton from 'app/components/form/SubmitButton';
 import { RegisterFormData } from 'app/types/user';
-import { required } from 'app/utils/validationUtils';
+import { isValidateEmail, required } from 'app/utils/validationUtils';
 
 type RegisterFormProps = {
   className: string;
@@ -18,6 +18,16 @@ const RegisterForm = ({ className, onSuccess }: RegisterFormProps) => {
 
   const onSubmit = (values: RegisterFormData) => {
     dispatch(register(values, onSuccess));
+  };
+
+  const validateEmail = (email?: string) => {
+    return isValidateEmail(email) ? undefined : 'Please provide a valid email';
+  };
+
+  const validatePassword = (password?: string) => {
+    return (password?.length || 0) < 8
+      ? 'Password need to has minimum length of 8'
+      : undefined;
   };
 
   return (
@@ -33,14 +43,14 @@ const RegisterForm = ({ className, onSuccess }: RegisterFormProps) => {
           name="email"
           component="input"
           label="Email"
-          validate={required('Email')}
+          validate={validateEmail}
         />
         <Field
           name="password"
           component="input"
           label="Password"
           type="password"
-          validate={required('Password')}
+          validate={validatePassword}
         />
       </Modal.Body>
       <Modal.Footer>

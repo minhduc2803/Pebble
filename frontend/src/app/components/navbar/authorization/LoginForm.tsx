@@ -3,6 +3,7 @@ import Field from 'app/components/form/Field';
 import Form from 'app/components/form/Form';
 import SubmitButton from 'app/components/form/SubmitButton';
 import { LoginFormData } from 'app/types/user';
+import { required } from 'app/utils/validationUtils';
 import { Modal } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
@@ -18,16 +19,6 @@ const LoginForm = ({ className, onSuccess }: LoginFormProps) => {
     dispatch(login(values, onSuccess));
   };
 
-  const validateEmail = (email?: string) => {
-    return email ? undefined : 'Email is required';
-  };
-
-  const validatePassword = (password?: string) => {
-    return (password?.length || 0) < 8
-      ? 'Password need to has minimum length of 8'
-      : undefined;
-  };
-
   return (
     <Form onSubmit={onSubmit} className={className}>
       <Modal.Body>
@@ -35,14 +26,14 @@ const LoginForm = ({ className, onSuccess }: LoginFormProps) => {
           name="email"
           component="input"
           label="Email"
-          validate={validateEmail}
+          validate={required('Email')}
         />
         <Field
           name="password"
           component="input"
           label="Password"
           type="password"
-          validate={validatePassword}
+          validate={required('Password')}
         />
       </Modal.Body>
       <Modal.Footer>

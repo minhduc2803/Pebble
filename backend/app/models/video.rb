@@ -16,4 +16,16 @@ class Video < ApplicationRecord
 
   validates_presence_of     :url
   validates_presence_of     :title
+  validate :validate_youtube_url
+
+  EMBED_URL = 'https://www.youtube.com/embed/';
+  WATCH_URL = 'https://www.youtube.com/watch?v=';
+
+  def validate_youtube_url
+    return if !url
+
+    if !url.start_with?(EMBED_URL) & !url.start_with?(WATCH_URL)
+      errors.add(:url, "must be a valid embed YouTube URL")
+    end
+  end
 end

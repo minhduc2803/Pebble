@@ -12,7 +12,7 @@
 #
 FactoryBot.define do
   factory :video do
-    url      { Faker::Internet.unique.email }
+    url      { "#{Video::EMBED_URL}#{Faker::Movie.name}" }
     title   { Faker::Movie.name }
     description { Faker::Movie.quote }
     association :user, factory: :user

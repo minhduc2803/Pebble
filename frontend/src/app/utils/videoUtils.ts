@@ -1,8 +1,10 @@
+import { embedUrl, watchUrl } from './validationUtils';
+
 export const transformEmbedLink = (link: string) => {
-  if (link.startsWith('https://www.youtube.com/embed/')) {
+  if (link.startsWith(embedUrl)) {
     return link;
-  } else if (link.startsWith('https://www.youtube.com/watch?v=')) {
+  } else if (link.startsWith(watchUrl)) {
     const embedId = link.split('watch?v=')[1];
-    return `https://www.youtube.com/embed/${embedId}`;
-  } else return 'https://www.youtube.com/embed/';
+    return `${embedUrl}${embedId}`;
+  } else return embedUrl;
 };

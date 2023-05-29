@@ -84,7 +84,7 @@ RSpec.describe VideosController, type: :request do
       let(:invalid_video_params) do
         {
           video: {
-            url: '',
+            url: 'https://www.randomlink.com',
             title: '',
           }
         }
@@ -96,7 +96,7 @@ RSpec.describe VideosController, type: :request do
         end.not_to change(Video, :count)
 
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response_body['errors']).to include("Url can't be blank")
+        expect(response_body['errors']).to include("Url must be a valid embed YouTube URL")
         expect(response_body['errors']).to include("Title can't be blank")
       end
     end
