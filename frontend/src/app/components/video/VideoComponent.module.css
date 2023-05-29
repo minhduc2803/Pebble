@@ -25,6 +25,7 @@
 
 .videoInfo {
   max-width: calc(100% - 480px - 16px);
+  width: calc(100% - 480px - 16px);
   max-height: 270px;
   overflow-y: auto;
 }

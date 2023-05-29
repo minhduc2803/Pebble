@@ -8,7 +8,7 @@ import { Modal } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
 type LoginFormProps = {
-  className: string;
+  className?: string;
   onSuccess?: () => void;
 };
 
@@ -18,6 +18,7 @@ const LoginForm = ({ className, onSuccess }: LoginFormProps) => {
   const onSubmit = (values: LoginFormData) => {
     dispatch(login(values, onSuccess));
   };
+
 
   return (
     <Form onSubmit={onSubmit} className={className}>

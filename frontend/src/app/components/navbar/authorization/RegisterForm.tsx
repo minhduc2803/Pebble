@@ -9,7 +9,7 @@ import { RegisterFormData } from 'app/types/user';
 import { isValidateEmail, required } from 'app/utils/validationUtils';
 
 type RegisterFormProps = {
-  className: string;
+  className?: string;
   onSuccess?: () => void;
 };
 

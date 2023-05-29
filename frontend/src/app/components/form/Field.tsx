@@ -11,13 +11,13 @@ type FieldProps = {
   [otherProp: string]: any;
 };
 
-const Field = ({ label, className, ...props }: FieldProps) => (
+const Field = ({ name, label, className, ...props }: FieldProps) => (
   <div className={classNames(styles.field, className)}>
-    {!!label && <FormLabel className={styles.label}>{label}</FormLabel>}
-    <FinalFormField {...props}>
+    {!!label && <FormLabel htmlFor={name} className={styles.label}>{label}</FormLabel>}
+    <FinalFormField name={name} {...props}>
       {({ input, meta }) => (
         <div className={styles.input}>
-          <input {...input} />
+          <input {...input} id={input.name} />
           {meta.error && meta.touched && (
             <div className={styles.error}>{meta.error}</div>
           )}
