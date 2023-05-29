@@ -19,7 +19,6 @@ const LoginForm = ({ className, onSuccess }: LoginFormProps) => {
     dispatch(login(values, onSuccess));
   };
 
-
   return (
     <Form onSubmit={onSubmit} className={className}>
       <Modal.Body>

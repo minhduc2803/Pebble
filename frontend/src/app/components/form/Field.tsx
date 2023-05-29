@@ -13,7 +13,11 @@ type FieldProps = {
 
 const Field = ({ name, label, className, ...props }: FieldProps) => (
   <div className={classNames(styles.field, className)}>
-    {!!label && <FormLabel htmlFor={name} className={styles.label}>{label}</FormLabel>}
+    {!!label && (
+      <FormLabel htmlFor={name} className={styles.label}>
+        {label}
+      </FormLabel>
+    )}
     <FinalFormField name={name} {...props}>
       {({ input, meta }) => (
         <div className={styles.input}>

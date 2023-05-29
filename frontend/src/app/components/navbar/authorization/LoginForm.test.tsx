@@ -22,7 +22,7 @@ describe('LoginForm', () => {
     render(
       <Provider store={store}>
         <LoginForm onSuccess={onSuccessMock} />
-      </Provider>
+      </Provider>,
     );
 
     expect(screen.queryByText('Email is required')).toBeNull();
@@ -45,6 +45,6 @@ describe('LoginForm', () => {
       expect(api.post).toHaveBeenCalledWith('/user_token', {
         auth: { email: 'test@example.com', password: 'password123' },
       });
-    })
+    });
   });
 });
