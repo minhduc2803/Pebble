@@ -11,7 +11,11 @@ const VideoComponent = ({ video }: VideoComponentProps) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.videoContainer}>
-        <img className={styles.ratio} src="http://placehold.it/16x9" />
+        <img
+          className={styles.ratio}
+          src="http://placehold.it/16x9"
+          alt="Not Found"
+        />
         <iframe
           src={transformEmbedLink(video.url)}
           frameBorder="0"

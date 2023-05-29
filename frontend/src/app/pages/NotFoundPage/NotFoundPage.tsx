@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { P } from './P';
 import NavBar from 'app/components/navbar/NavBar';
 
 const NotFoundPage = () => {
@@ -18,7 +17,7 @@ const NotFoundPage = () => {
           </span>
           4
         </div>
-        <P>Page not found.</P>
+        <p>page not found.</p>
         <Link to={process.env.PUBLIC_URL + '/'}>Return to Home Page</Link>
       </div>
     </>
