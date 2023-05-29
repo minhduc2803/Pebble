@@ -24,6 +24,7 @@ WORKDIR $APP_HOME
 
 ADD Gemfile ./
 ADD Gemfile.lock ./
+RUN bundle update --bundler
 RUN bundle install
 
 ADD . $APP_HOME
