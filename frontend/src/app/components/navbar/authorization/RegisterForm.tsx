@@ -1,10 +1,12 @@
+import { useDispatch } from 'react-redux';
+import { Modal } from 'react-bootstrap';
+
 import { register } from 'app/actions/user';
 import Field from 'app/components/form/Field';
 import Form from 'app/components/form/Form';
 import SubmitButton from 'app/components/form/SubmitButton';
 import { RegisterFormData } from 'app/types/user';
-import { Modal } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { required } from 'app/utils/validationUtils';
 
 type RegisterFormProps = {
   className: string;
@@ -21,13 +23,24 @@ const RegisterForm = ({ className, onSuccess }: RegisterFormProps) => {
   return (
     <Form onSubmit={onSubmit} className={className}>
       <Modal.Body>
-        <Field name="fullName" component="input" label="Full Name" />
-        <Field name="email" component="input" label="Email" />
+        <Field
+          name="fullName"
+          component="input"
+          label="Full Name"
+          validate={required('Full Name')}
+        />
+        <Field
+          name="email"
+          component="input"
+          label="Email"
+          validate={required('Email')}
+        />
         <Field
           name="password"
           component="input"
           label="Password"
           type="password"
+          validate={required('Password')}
         />
       </Modal.Body>
       <Modal.Footer>

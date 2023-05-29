@@ -10,6 +10,7 @@ import { alertSuccess } from 'app/utils/alert';
 import Field from 'app/components/form/Field';
 import TextAreaField from 'app/components/form/TextAreaField';
 import SubmitButton from 'app/components/form/SubmitButton';
+import { required } from 'app/utils/validationUtils';
 
 import styles from './ShareVideoModal.module.css';
 
@@ -43,8 +44,18 @@ const ShareVideoModal = () => {
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <Modal.Body>
-                <Field name="url" component="input" label="Youtube URL" />
-                <Field name="title" component="input" label="Title" />
+                <Field
+                  name="url"
+                  component="input"
+                  label="Youtube URL"
+                  validate={required('Youtube URL')}
+                />
+                <Field
+                  name="title"
+                  component="input"
+                  label="Title"
+                  validate={required('Title')}
+                />
                 <TextAreaField name="description" label="Desription" />
               </Modal.Body>
               <Modal.Footer className={styles.footer}>

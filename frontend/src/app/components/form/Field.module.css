@@ -12,3 +12,8 @@
 .input {
   flex: 1 1;
 }
+
+.error { 
+  color: red;
+  font-size: 14px;
+}

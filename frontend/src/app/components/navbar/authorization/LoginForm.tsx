@@ -18,15 +18,31 @@ const LoginForm = ({ className, onSuccess }: LoginFormProps) => {
     dispatch(login(values, onSuccess));
   };
 
+  const validateEmail = (email?: string) => {
+    return email ? undefined : 'Email is required';
+  };
+
+  const validatePassword = (password?: string) => {
+    return (password?.length || 0) < 8
+      ? 'Password need to has minimum length of 8'
+      : undefined;
+  };
+
   return (
     <Form onSubmit={onSubmit} className={className}>
       <Modal.Body>
-        <Field name="email" component="input" label="Email" />
+        <Field
+          name="email"
+          component="input"
+          label="Email"
+          validate={validateEmail}
+        />
         <Field
           name="password"
           component="input"
           label="Password"
           type="password"
+          validate={validatePassword}
         />
       </Modal.Body>
       <Modal.Footer>

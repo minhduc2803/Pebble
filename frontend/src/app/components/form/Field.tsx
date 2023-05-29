@@ -14,7 +14,16 @@ type FieldProps = {
 const Field = ({ label, className, ...props }: FieldProps) => (
   <div className={classNames(styles.field, className)}>
     {!!label && <FormLabel className={styles.label}>{label}</FormLabel>}
-    <FinalFormField {...props} className={styles.input} />
+    <FinalFormField {...props}>
+      {({ input, meta }) => (
+        <div className={styles.input}>
+          <input {...input} />
+          {meta.error && meta.touched && (
+            <div className={styles.error}>{meta.error}</div>
+          )}
+        </div>
+      )}
+    </FinalFormField>
   </div>
 );
 
