@@ -20,8 +20,6 @@ import { App } from 'app/App';
 
 import reportWebVitals from 'reportWebVitals';
 
-// Initialize languages
-import './locales/i18n';
 import store from 'app/redux/store';
 
 // Observe loading of Inter (to remove 'Inter', remove the <link> tag in

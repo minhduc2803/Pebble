@@ -9,14 +9,6 @@ GIT
       jwt (~> 2.2.1)
       rails (>= 5)
 
-GIT
-  remote: https://github.com/rootstrap/exception_hunter.git
-  revision: b6f7cab9e9a9157147c5a165d0b79762c6158664
-  specs:
-    exception_hunter (1.1.0)
-      pagy (~> 4)
-      slack-notifier (~> 2.3)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -98,8 +90,6 @@ GEM
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
-    binding_of_caller (1.0.0)
-      debug_inspector (>= 0.0.1)
     bootsnap (1.13.0)
       msgpack (~> 1.2)
     brakeman (5.3.1)
@@ -116,12 +106,6 @@ GEM
       rexml
     crass (1.0.6)
     date (3.3.3)
-    debug_inspector (1.1.0)
-    delayed_job (4.1.11)
-      activesupport (>= 3.0, < 8.0)
-    delayed_job_active_record (4.1.7)
-      activerecord (>= 3.0, < 8.0)
-      delayed_job (>= 3.0, < 5)
     diff-lcs (1.5.0)
     docile (1.1.5)
     dotenv (2.7.6)
@@ -130,7 +114,6 @@ GEM
       railties (>= 3.2)
     erubi (1.11.0)
     erubis (2.7.0)
-    execjs (2.8.1)
     factory_bot (5.2.0)
       activesupport (>= 4.2.0)
     factory_bot_rails (5.2.0)
@@ -197,7 +180,6 @@ GEM
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     oj (3.13.21)
-    pagy (4.11.0)
     parallel (1.22.1)
     parser (3.1.2.1)
       ast (~> 2.4.1)
@@ -314,16 +296,6 @@ GEM
     rubocop-rootstrap (1.2)
       rubocop (>= 0.72, < 2)
     ruby-progressbar (1.11.0)
-    sass-rails (6.0.0)
-      sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     sendgrid (1.2.4)
       json
     sexp_processor (4.16.1)
@@ -334,24 +306,13 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
-    slack-notifier (2.4.0)
     spring (4.1.0)
-    sprockets (3.7.2)
-      concurrent-ruby (~> 1.0)
-      rack (> 1, < 3)
-    sprockets-rails (3.4.2)
-      actionpack (>= 5.2)
-      activesupport (>= 5.2)
-      sprockets (>= 3.0.0)
     terminal-table (3.0.2)
       unicode-display_width (>= 1.1.1, < 3)
     thor (1.2.1)
-    tilt (2.0.11)
     timeout (0.3.2)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
-    uglifier (4.2.0)
-      execjs (>= 0.3.0, < 3)
     unicode-display_width (1.8.0)
     uniform_notifier (1.16.0)
     webmock (3.18.1)
@@ -361,9 +322,6 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    yaaf (2.2.0)
-      activemodel (>= 5.2)
-      activerecord (>= 5.2)
     zeitwerk (2.6.1)
 
 PLATFORMS
@@ -373,13 +331,10 @@ DEPENDENCIES
   active_storage_base64 (~> 2.0.0)
   annotate (~> 3.2, >= 3.0.3)
   better_errors (~> 2.5, >= 2.5.1)
-  binding_of_caller (~> 1.0)
   bootsnap (~> 1.4, >= 1.4.5)
   brakeman (~> 5.1)
   bullet (~> 7.0.3)
-  delayed_job_active_record (~> 4.1, >= 4.1.5)
   dotenv-rails (~> 2.7.6)
-  exception_hunter!
   factory_bot_rails (~> 5.1, >= 5.1.1)
   faker (~> 2.13)
   i18n-tasks (~> 0.9.30)
@@ -388,7 +343,6 @@ DEPENDENCIES
   letter_opener (~> 1.7)
   listen (~> 3.2)
   oj (~> 3.9, >= 3.9.2)
-  pagy (~> 4.0)
   pg (~> 1.1, >= 1.1.4)
   pry-byebug (~> 3.9)
   pry-rails (~> 0.3.9)
@@ -402,16 +356,12 @@ DEPENDENCIES
   rspec_api_documentation (~> 6.1.0)
   rubocop-rails (~> 2.16, >= 2.16.1)
   rubocop-rootstrap (~> 1.2)
-  sass-rails (~> 6.0.0)
   sendgrid (~> 1.2.4)
   shoulda-matchers (~> 4.1, >= 4.1.2)
   simplecov (~> 0.13.0)
   spring (~> 4.0)
-  sprockets (~> 3.7.2)
   tzinfo-data
-  uglifier (~> 4.2)
   webmock (~> 3.7, >= 3.7.6)
-  yaaf (~> 2.2)
 
 RUBY VERSION
    ruby 3.1.2p20

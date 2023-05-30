@@ -24,16 +24,6 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
-  # Compress CSS using a preprocessor.
-  # config.assets.css_compressor = :sass
-
-  # Fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = true
-
-  config.assets.digest = true
-
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.asset_host = 'http://assets.example.com'
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
@@ -65,7 +55,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
-  config.active_job.queue_adapter = :delayed_job
+  # config.active_job.queue_adapter = :delayed_job
   # config.active_job.queue_name_prefix = "app_production"
 
   config.action_mailer.perform_caching = false

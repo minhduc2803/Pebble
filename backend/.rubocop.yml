@@ -9,7 +9,6 @@ inherit_mode:
 AllCops:
   Exclude:
     - db/schema.rb
-    - config/initializers/pagy.rb
     - bin/bundle
     - bin/yarn
 
