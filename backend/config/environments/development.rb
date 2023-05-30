@@ -86,4 +86,6 @@ Rails.application.configure do
   end
 
   config.debug_exception_response_format = :default
+
+  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/, /file:\/\/*/, 'file://', nil]
 end
