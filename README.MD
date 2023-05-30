@@ -46,8 +46,9 @@ docker-compose up --build -d
 
 ## 3. App features
 
-### 1. Browsing videos
+### 1. Browsing videos with pagination
 ![browsing](images/browsing.png)
+![pagination](images/pagination.png)
 ### 2. Login with validation / Keep login credential in `localStorage` / Logout
 ![login](images/login.png)
 ### 3. Register with validation
@@ -56,3 +57,4 @@ docker-compose up --build -d
 ![shareVideo](images/shareVideo.png)
 ![shareVideo](images/shareSuccess.png)
 ### 5. Instance notification when someone share a video
+![notify](images/instanceNotify.png)
