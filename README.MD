@@ -4,12 +4,14 @@ Taking a look at the demo here: http://pebble-app.koreacentral.cloudapp.azure.co
 
 ## 1. Tech stack
 - Rails 7
-- React JS
-- PostgreSQL
+- React JS 18
+- PostgreSQL 14
 
 ## 2. How to run app on local
 
-### 1. Install Docker and Docker compose
+### 2.1. Install Docker and Docker compose
+
+This part is for `Ubuntu` user only, if you are using Mac or Window please download Docker Desktop from https://www.docker.com/products/docker-desktop/
 
 If you already have docker and docker compose then please skip this part
 
@@ -19,8 +21,14 @@ sh get-docker.sh
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 ```
+Add docker to docker group to run docker as non-root user
+```
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+```
 
-### 2. Clone the project
+### 2.2. Clone the project
 ```
 git clone https://github.com/minhduc2803/Pebble.git
 ```
@@ -29,7 +37,7 @@ and also `cd` to the root of the project
 cd Pebble
 ```
 
-### 3. Add `.env` and .`env.frontend` file
+### 2.3. Add `.env` and .`env.frontend` file
 
 You can copy what we have on `.env.example` and `.env.frontend.example`
 
@@ -38,23 +46,88 @@ cp .env.example .env
 cp .env.frontend.example .env.frontend
 ```
 
-### 4. Run docker-compose
+### 2.4. Run docker-compose
 
 ```
 docker-compose up --build -d
 ```
 
-## 3. App features
+### 2.5. Run migration
 
-### 1. Browsing videos with pagination
+If this is the first time you run the app on your machine then you need to run migration. Other wise please skip this part
+
+```
+docker-compose exec backend rails db:migrate
+```
+
+The app will available on `localhost:80`
+
+## 3. Run tests suit
+
+### 3.1 Front end
+Navigate to `frontend` directory and run
+```
+yarn test
+```
+### 3.2 Back end
+Navigate to `backend` directory and run
+```
+rspec
+```
+
+## 4. Deploy to Azure
+
+- Create Ubuntu Azure virtual machine
+
+- Create a public domain name for the machine
+
+- In the Networking section, create `inbound port rule` to allow access to the machine from outside. Recommended adding at least 2 more rules
+  - HTTP over port 80 to allow access to frontend server.
+  - Any protocol over port 8000 to allow access to backend server api and websocket.
+Please make sure to add "Any protocol over port 8000", other wise the websocket will not work.
+
+- Connect with the machine via `ssh`
+
+- Follow steps on section 2. to install Docker and Docker Compose on the machine, also pull the project to the machine.
+
+- When adding `.env` remember to change the the `SERVER_HOST` to the machine public domain name. For example:
+  ```
+  SERVER_HOST=pebble-app.koreacentral.cloudapp.azure.com
+  ```
+
+- When adding `.env.frontend` remember to change the `REACT_APP_BACKEND_URL` to the machine public domain on port `8000`, and `REACT_APP_BACKEND_WEBSOCKET` to the machine public domain on port `8000` but with `ws` protocol:
+
+  ```
+  REACT_APP_BACKEND_URL=http://pebble-app.koreacentral.cloudapp.azure.com:8000
+  REACT_APP_BACKEND_WEBSOCKET=ws://pebble-app.koreacentral.cloudapp.azure.com:8000/cable
+  ```
+
+- Run `docker-compose up --build -d` to run the server.
+
+- If this is the first time deploy, please remember to run `migration` as well:
+  ```
+  docker-compose exec backend rails db:migrate
+  ```
+
+## 5. App features
+
+### 5.1. Browsing videos with pagination
 ![browsing](images/browsing.png)
 ![pagination](images/pagination.png)
-### 2. Login with validation / Keep login credential in `localStorage` / Logout
+### 5.2. Login with validation / Keep login credential in `localStorage` / Logout
 ![login](images/login.png)
-### 3. Register with validation
+### 5.3. Register with validation
 ![register](images/register.png)
-### 4. Share a video with validation
+### 5.4. Share a video with validation
 ![shareVideo](images/shareVideo.png)
 ![shareVideo](images/shareSuccess.png)
-### 5. Instance notification when someone share a video
+### 5.5. Instant notification when someone shares a video
 ![notify](images/instanceNotify.png)
+
+## 6. Troubleshooting
+
+6.1. If the permission error arises when running Docker then you might running Docker as non-root user, please follow 2.1. above.
+
+6.2 Please be carefull when deploying this app with Docker at the step of creating `.env` and `.env.frontend` files. The variables need to match the backend host and the link for websocket need to be in `ws:` protocol.
+
+6.2 If you can access the frontend but api from backend return error and maybe you forgot to run `migration` or the variables on `.env` and `.env.frontend` are not valid.
