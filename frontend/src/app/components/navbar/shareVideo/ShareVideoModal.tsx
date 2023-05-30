@@ -10,7 +10,11 @@ import { alertSuccess } from 'app/utils/alert';
 import Field from 'app/components/form/Field';
 import TextAreaField from 'app/components/form/TextAreaField';
 import SubmitButton from 'app/components/form/SubmitButton';
-import { isValidYoutubeUrl, required } from 'app/utils/validationUtils';
+import {
+  isValidYoutubeUrl,
+  required,
+  urlError,
+} from 'app/utils/validationUtils';
 
 import styles from './ShareVideoModal.module.css';
 
@@ -31,9 +35,7 @@ const ShareVideoModal = () => {
   };
 
   const validateYoutubeUrl = (url?: string) => {
-    return isValidYoutubeUrl(url)
-      ? undefined
-      : 'Please provide a valid embed youtube url';
+    return isValidYoutubeUrl(url) ? undefined : urlError;
   };
 
   return (

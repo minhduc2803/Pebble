@@ -16,7 +16,7 @@ describe('LoginForm', () => {
     mockedApiPost.mockResolvedValueOnce({ data: { token: 'test-token' } });
   });
 
-  it('does field validation and only allow submit when form does not errors', async () => {
+  it('does field validation and only allow submit when form does not have errors', async () => {
     const onSuccessMock = jest.fn();
 
     render(
