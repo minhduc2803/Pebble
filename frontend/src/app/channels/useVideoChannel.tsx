@@ -9,7 +9,9 @@ import { tranformObjectKeys } from 'app/utils/objectUtils';
 import { User } from 'app/types/user';
 
 const useVideoChannel = () => {
-  const cable = ActionCable.createConsumer('ws://localhost:3000/cable');
+  const cable = ActionCable.createConsumer(
+    `ws://${process.env.REACT_APP_BACKEND_URL}/cable`,
+  );
   const dispatch = useDispatch();
   const user = useSelector(state => {
     const stateWithType = state as { user: User };
