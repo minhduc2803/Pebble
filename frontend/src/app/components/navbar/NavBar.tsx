@@ -25,11 +25,11 @@ const NavBar = () => {
         {isUserLogin ? (
           <div className={styles.nav}>
             Welcome <b>{user.fullName}</b>
-            <ShareVideoModal />
-            <LogoutButton />
+            <ShareVideoModal className={styles.shareButton} />
+            <LogoutButton className={styles.logoutButton} />
           </div>
         ) : (
-          <LoginModal />
+          <LoginModal className={styles.loginButton} />
         )}
       </div>
     </header>

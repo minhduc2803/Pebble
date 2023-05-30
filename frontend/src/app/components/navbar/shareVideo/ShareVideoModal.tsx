@@ -18,7 +18,11 @@ import {
 
 import styles from './ShareVideoModal.module.css';
 
-const ShareVideoModal = () => {
+type ShareVideoModalProps = {
+  className?: string;
+};
+
+const ShareVideoModal = ({ className }: ShareVideoModalProps) => {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
 
@@ -40,7 +44,7 @@ const ShareVideoModal = () => {
 
   return (
     <>
-      <Button variant="light" onClick={handleShow}>
+      <Button variant="light" onClick={handleShow} className={className}>
         Share a video
       </Button>
       <Modal show={show} onHide={handleClose}>

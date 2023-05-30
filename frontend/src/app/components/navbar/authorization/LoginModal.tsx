@@ -6,7 +6,11 @@ import RegisterForm from './RegisterForm';
 
 import styles from './LoginModal.module.css';
 
-const LoginModal = () => {
+type LoginModalProps = {
+  className?: string;
+};
+
+const LoginModal = ({ className }: LoginModalProps) => {
   const [show, setShow] = useState(false);
   const [isLoginForm, setIsLoginForm] = useState(true);
 
@@ -18,7 +22,7 @@ const LoginModal = () => {
 
   return (
     <>
-      <Button variant="light" onClick={handleShow}>
+      <Button variant="light" onClick={handleShow} className={className}>
         Login / Register
       </Button>
 

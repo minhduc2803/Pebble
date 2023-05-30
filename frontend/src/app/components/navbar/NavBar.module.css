@@ -38,3 +38,41 @@
   align-items: center;
   gap: 8px;
 }
+
+@media only screen and (max-width: 640px) {
+  .brand {
+    font-size: 24px;
+  }
+
+  .nav {
+    gap: 4px;
+    font-size: 14px;
+  }
+
+  .shareButton, .logoutButton {
+    font-size: 14px;
+    padding: 6px;
+  }
+}
+
+
+@media only screen and (max-width: 524px) {
+  .brand {
+    font-size: 24px;
+  }
+
+  .nav {
+    gap: 2px;
+    font-size: 12px;
+  }
+
+  .shareButton, .logoutButton {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  .loginButton {
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+}

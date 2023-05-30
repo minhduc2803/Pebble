@@ -3,7 +3,11 @@ import { useCallback } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
-const LogoutButton = () => {
+type LogoutButtonProps = {
+  className?: string;
+};
+
+const LogoutButton = ({ className }: LogoutButtonProps) => {
   const dispatch = useDispatch();
 
   const hanleLogout = useCallback(() => {
@@ -11,7 +15,7 @@ const LogoutButton = () => {
   }, [dispatch]);
 
   return (
-    <Button onClick={hanleLogout} variant="light">
+    <Button onClick={hanleLogout} variant="light" className={className}>
       Log out
     </Button>
   );
