@@ -2,6 +2,7 @@ version: '3.0'
 
 services:
   frontend:
+    image: minduc/pebble:frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -10,6 +11,7 @@ services:
     env_file:
       - .env.frontend
   backend:
+    image: minduc/pebble:backend
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -18,13 +20,13 @@ services:
     depends_on:
       - database
     env_file:
-      - .env.backend
+      - .env
   database:
     image: postgres:14
     environment:
-      POSTGRES_USER: <%= ENV['DATABASE_USERNAME'] %>
-      POSTGRES_PASSWORD: <%= ENV['DATABASE_PASSWORD'] %>
-      POSTGRES_DB: <%= ENV['DATABASE_NAME'] %>
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
     volumes:
       - db_data:/var/lib/postgresql/data
 volumes:
