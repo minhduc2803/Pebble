@@ -30,10 +30,7 @@ export const shareVideo =
       const data = await api.post('/videos', {
         url: video.url,
       });
-      dispatch({
-        type: ADD_VIDEO_ACTION,
-        video: data.data,
-      });
+      dispatch(addVideo(data.data));
       if (onSuccess) onSuccess();
     } catch (errorWithoutType) {
       const error = errorWithoutType as AxiosError;
@@ -44,7 +41,10 @@ export const shareVideo =
     }
   };
 
-export const addYtVideo = ytVideoId => async dispatch => {
+export const addYtVideo = ytVideoId => async (dispatch, getState) => {
+  const existingYtVideo = getState().videos.byYtVideoId[ytVideoId];
+  if (existingYtVideo) return;
+
   try {
     const videoInfo = await fetchVideoInfo(ytVideoId);
     dispatch({
@@ -64,13 +64,18 @@ export const addYtVideo = ytVideoId => async dispatch => {
   }
 };
 
+export const addVideo = (video) => async dispatch => {
+  dispatch({
+    type: ADD_VIDEO_ACTION,
+    video,
+  });
+  dispatch(addYtVideo(video.ytVideoId));
+};
+
 export const receiveSharedVideo = (video: Video) => (dispatch, getState) => {
   const user = getState().user;
   if (video.user.id !== user.id) {
     alertInfo(`${video.user.fullName} just shared a video: ${video.title}`);
-    dispatch({
-      type: ADD_VIDEO_ACTION,
-      video,
-    });
+    dispatch(addVideo(video));
   }
 };

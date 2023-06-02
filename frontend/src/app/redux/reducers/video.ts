@@ -22,7 +22,7 @@ const videos = (state = initialState, action) => {
         ...state,
         allIds: action.videos.map(({ id }) => id),
         byId: {
-          ...initialState.byId,
+          ...state.byId,
           ...action.videos.reduce(
             (acc: Record<number, Video>, video: Video) => {
               acc[video.id] = video;
@@ -43,9 +43,9 @@ const videos = (state = initialState, action) => {
         ...state,
         allIds: newAllIds,
         byId: {
-          ...initialState.byId,
+          ...state.byId,
           [action.video.id]: {
-            ...initialState.byId[action.video.id],
+            ...state.byId[action.video.id],
             ...action.video,
           },
         },
@@ -55,9 +55,9 @@ const videos = (state = initialState, action) => {
       return {
         ...state,
         byYtVideoId: {
-          ...initialState.byYtVideoId,
+          ...state.byYtVideoId,
           [action.ytVideo.ytVideoId]: {
-            ...initialState.byYtVideoId[action.ytVideo.ytVideoId],
+            ...state.byYtVideoId[action.ytVideo.ytVideoId],
             ...action.ytVideo,
           },
         },
