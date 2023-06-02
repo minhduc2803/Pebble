@@ -64,7 +64,7 @@ export const addYtVideo = ytVideoId => async (dispatch, getState) => {
   }
 };
 
-export const addVideo = (video) => async dispatch => {
+export const addVideo = video => async dispatch => {
   dispatch({
     type: ADD_VIDEO_ACTION,
     video,

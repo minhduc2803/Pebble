@@ -24,7 +24,9 @@ const VideoComponent = ({ videoId }: VideoComponentProps) => {
         byYtVideoId: Record<number, YoutubeVideo>;
       };
     };
-    return video?.ytVideoId ? stateWithType.videos.byYtVideoId[video.ytVideoId] : null;
+    return video?.ytVideoId
+      ? stateWithType.videos.byYtVideoId[video.ytVideoId]
+      : null;
   });
 
   if (!video) return null;
