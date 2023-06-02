@@ -8,13 +8,8 @@ import { VideoFormData } from 'app/types/video';
 import { alertSuccess } from 'app/utils/alert';
 
 import Field from 'app/components/form/Field';
-import TextAreaField from 'app/components/form/TextAreaField';
 import SubmitButton from 'app/components/form/SubmitButton';
-import {
-  isValidYoutubeUrl,
-  required,
-  urlError,
-} from 'app/utils/validationUtils';
+import { required } from 'app/utils/validationUtils';
 
 import styles from './ShareVideoModal.module.css';
 
@@ -38,10 +33,6 @@ const ShareVideoModal = ({ className }: ShareVideoModalProps) => {
     );
   };
 
-  const validateYoutubeUrl = (url?: string) => {
-    return isValidYoutubeUrl(url) ? undefined : urlError;
-  };
-
   return (
     <>
       <Button variant="light" onClick={handleShow} className={className}>
@@ -60,15 +51,8 @@ const ShareVideoModal = ({ className }: ShareVideoModalProps) => {
                   name="url"
                   component="input"
                   label="Youtube URL"
-                  validate={validateYoutubeUrl}
+                  validate={required('Youtube URL')}
                 />
-                <Field
-                  name="title"
-                  component="input"
-                  label="Title"
-                  validate={required('Title')}
-                />
-                <TextAreaField name="description" label="Desription" />
               </Modal.Body>
               <Modal.Footer className={styles.footer}>
                 <SubmitButton>Share</SubmitButton>

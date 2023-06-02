@@ -19,30 +19,27 @@ class VideosController < ApplicationController
 
   # POST /videos
   def create
-    video = current_user.videos.new(video_params)
-    if video.save
+    video = VideoConcern.share_video(params[:url], current_user)
+    if video.errors.any?
+      render json: { errors: video.errors.full_messages }, status: :unprocessable_entity
+    else
       rendered_video = {
         id: video.id,
-        url: video.url,
-        title: video.title,
-        description: video.description,
+        yt_video_id: video.yt_video_id,
         user: {
           id: current_user.id,
           full_name: current_user.full_name,
           email: current_user.email
         }
       }
-      ActionCable.server.broadcast('video_channel', rendered_video)
       render json: rendered_video, status: :created
-    else
-      render json: { errors: video.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   private
 
   def video_params
-    params.require(:video).permit(:url, :title, :description)
+    params.require(:url)
   end
 
   def authorize_user

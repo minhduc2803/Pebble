@@ -12,9 +12,3 @@ export const isValidateEmail = (email?: string) => {
 };
 
 export const embedUrl = 'https://www.youtube.com/embed/';
-export const watchUrl = 'https://www.youtube.com/watch?v=';
-
-export const isValidYoutubeUrl = (url?: string) => {
-  if (!url) return false;
-  return url.startsWith(embedUrl) || url.startsWith(watchUrl);
-};

@@ -1,8 +1,8 @@
 export type Video = {
   id: number;
-  url: string;
-  title: string;
-  description: string;
+  ytVideoId: string;
+  title?: string;
+  description?: string;
   user: {
     id: number;
     fullName: string;
@@ -14,6 +14,9 @@ export type Video = {
 
 export type VideoFormData = {
   url: string;
+};
+
+export type YoutubeVideo = {
   title: string;
   description: string;
 };

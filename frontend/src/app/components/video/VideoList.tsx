@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
-import { Video } from 'app/types/video';
 import { useSelector } from 'react-redux';
 import VideoComponent from './VideoComponent';
 
@@ -10,30 +9,29 @@ import styles from './VideoList.module.css';
 const videosPerPage = 10;
 
 const VideoList = () => {
-  const videos = useSelector(state => {
+  const allIds = useSelector(state => {
     const stateWithType = state as {
-      videos: Video[];
+      videos: {
+        allIds: number[];
+      };
     };
-    return stateWithType.videos;
+    return stateWithType.videos.allIds;
   });
-
   const [selectedPage, setSelectedPage] = useState(0);
-  const shownVideos = useMemo(
-    () => videos.slice(selectedPage * 10, selectedPage * 10 + 10),
-    [videos, selectedPage],
+  const shownVideoIds = useMemo(
+    () => allIds.slice(selectedPage * 10, selectedPage * 10 + 10),
+    [allIds, selectedPage],
   );
-
-  const pageCount = Math.ceil(videos.length / videosPerPage);
+  const pageCount = Math.ceil(allIds.length / videosPerPage);
 
   const handlePageClick = event => {
-    console.log('selected', event.selected);
     setSelectedPage(event.selected);
   };
 
   return (
     <div className={styles.listContainer}>
-      {shownVideos.map(video => (
-        <VideoComponent key={video.id} video={video} />
+      {shownVideoIds.map(videoId => (
+        <VideoComponent key={videoId} videoId={videoId} />
       ))}
       <ReactPaginate
         breakLabel="..."
