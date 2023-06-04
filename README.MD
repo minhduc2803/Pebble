@@ -120,7 +120,7 @@ Please make sure to add "Any protocol over port 8000", other wise the websocket 
 ![login](images/login.png)
 ### 5.3. Register
 ![register](images/register.png)
-### 5.4. Share a video
+### 5.4. Share a video / validate if Youtube URL is real or not
 ![shareVideo](images/shareVideo.png)
 ![shareVideoSuccess](images/shareSuccess.png)
 ![shareVideoFailed](images/shareFailed.png)
