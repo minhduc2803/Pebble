@@ -27,30 +27,53 @@
   max-width: calc(100% - 480px - 16px);
   width: calc(100% - 480px - 16px);
   max-height: 270px;
-  overflow-y: auto;
+  overflow-y: hidden;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .videoInfo * {
   width: 100%;
   max-width: 100%;
   word-wrap: break-word;
+  font-size: 13px;
+  padding: 0 8px;
 }
 
 .title {
+  background-color: white;
   color:chocolate;
   font-size: 18px;
   font-weight: 500;
+  padding: 0;
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.videoInfo::-webkit-scrollbar {
-  display: none;
+.description {
+  white-space: pre-line;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 8px 0 0 8px;
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-top: 4px;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
-.videoInfo {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+.description::-webkit-scrollbar {
+  width: 3px;
+}
+
+.description::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.description::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.description::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.15);
 }
 
 @media only screen and (max-width: 840px) {
@@ -62,15 +85,15 @@
   .videoInfo {
     max-width: 480px;
     width: 480px;
+    max-height: none;
+  }
+
+  .description {
+    max-height: 110px;
   }
 }
 
 @media only screen and (max-width: 480px) {
-  .wrapper {
-    flex-direction: column;
-    align-items: center;
-  }
-
   .videoContainer {
     width: 100%;
   }

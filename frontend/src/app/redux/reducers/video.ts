@@ -2,7 +2,7 @@ import {
   ADD_VIDEO_ACTION,
   ADD_YOUTUBE_VIDEO_ACTION,
   FETCH_VIDEOS_ACTION,
-} from '../actions/type';
+} from '../actionNames';
 import { Video, YoutubeVideo } from 'app/types/video';
 
 const initialState: {

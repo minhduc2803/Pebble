@@ -1,5 +1,5 @@
 import api from 'app/api/api';
-import { LOGIN_ACTION, LOGOUT_ACTION } from 'app/redux/actions/type';
+import { LOGIN_ACTION, LOGOUT_ACTION } from 'app/redux/actionNames';
 import { LoginFormData, RegisterFormData } from 'app/types/user';
 import { alertError } from 'app/utils/alert';
 import { AxiosError } from 'axios';

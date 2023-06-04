@@ -1,22 +1,20 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import ActionCable from 'actioncable';
 import _ from 'lodash';
 
 import { Video } from 'app/types/video';
 import { receiveSharedVideo } from 'app/actions/video';
 import { tranformObjectKeys } from 'app/utils/objectUtils';
-import { User } from 'app/types/user';
+import { useAppSelector } from 'app/redux/types';
+import { userSelector } from 'app/selectors/user';
 
 const useVideoChannel = () => {
   const cable = ActionCable.createConsumer(
     process.env.REACT_APP_BACKEND_WEBSOCKET,
   );
   const dispatch = useDispatch();
-  const user = useSelector(state => {
-    const stateWithType = state as { user: User };
-    return stateWithType.user;
-  });
+  const user = useAppSelector(userSelector);
 
   useEffect(() => {
     if (user.token) {

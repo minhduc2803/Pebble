@@ -4,7 +4,7 @@ import {
   ADD_VIDEO_ACTION,
   ADD_YOUTUBE_VIDEO_ACTION,
   FETCH_VIDEOS_ACTION,
-} from 'app/redux/actions/type';
+} from 'app/redux/actionNames';
 import { Video, VideoFormData } from 'app/types/video';
 import { alertError, alertInfo } from 'app/utils/alert';
 import { AxiosError } from 'axios';

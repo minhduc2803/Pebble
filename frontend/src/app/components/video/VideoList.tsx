@@ -1,22 +1,15 @@
 import { useMemo, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
-import { useSelector } from 'react-redux';
 import VideoComponent from './VideoComponent';
+import { useAppSelector } from 'app/redux/types';
 
 import styles from './VideoList.module.css';
 
 const videosPerPage = 10;
 
 const VideoList = () => {
-  const allIds = useSelector(state => {
-    const stateWithType = state as {
-      videos: {
-        allIds: number[];
-      };
-    };
-    return stateWithType.videos.allIds;
-  });
+  const allIds = useAppSelector(state => state.videos.allIds);
   const [selectedPage, setSelectedPage] = useState(0);
   const shownVideoIds = useMemo(
     () => allIds.slice(selectedPage * 10, selectedPage * 10 + 10),

@@ -1,5 +1,5 @@
 import { User } from 'app/types/user';
-import { LOGIN_ACTION, LOGOUT_ACTION } from '../actions/type';
+import { LOGIN_ACTION, LOGOUT_ACTION } from '../actionNames';
 
 const initialState: User = {
   id: 0,

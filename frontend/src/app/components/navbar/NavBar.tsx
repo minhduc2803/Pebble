@@ -1,18 +1,14 @@
-import { useSelector } from 'react-redux';
-import { User } from 'app/types/user';
-
 import ShareVideoModal from './shareVideo/ShareVideoModal';
 import LoginModal from './authorization/LoginModal';
 import LogoutButton from './LogoutButton';
 import { ReactComponent as Logo } from 'app/images/logo.svg';
+import { useAppSelector } from 'app/redux/types';
+import { userSelector } from 'app/selectors/user';
 
 import styles from './NavBar.module.css';
 
 const NavBar = () => {
-  const user = useSelector(state => {
-    const stateWithType = state as { user: User };
-    return stateWithType.user;
-  });
+  const user = useAppSelector(userSelector);
   const isUserLogin = !!user?.token;
 
   return (

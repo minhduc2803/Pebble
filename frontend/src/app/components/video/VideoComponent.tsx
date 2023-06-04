@@ -1,33 +1,18 @@
-import { useSelector } from 'react-redux';
-
-import { Video, YoutubeVideo } from 'app/types/video';
+import { embedUrl } from 'app/utils/validationUtils';
+import { videoSelector, ytVideoSelector } from 'app/selectors/video';
+import { useAppSelector } from 'app/redux/types';
 
 import styles from './VideoComponent.module.css';
-import { embedUrl } from 'app/utils/validationUtils';
 
 type VideoComponentProps = {
   videoId: number;
 };
 
 const VideoComponent = ({ videoId }: VideoComponentProps) => {
-  const video = useSelector(state => {
-    const stateWithType = state as {
-      videos: {
-        byId: Record<number, Video>;
-      };
-    };
-    return stateWithType.videos.byId[videoId];
-  });
-  const ytVideo = useSelector(state => {
-    const stateWithType = state as {
-      videos: {
-        byYtVideoId: Record<number, YoutubeVideo>;
-      };
-    };
-    return video?.ytVideoId
-      ? stateWithType.videos.byYtVideoId[video.ytVideoId]
-      : null;
-  });
+  const video = useAppSelector(state => videoSelector(state, videoId));
+  const ytVideo = useAppSelector(state =>
+    ytVideoSelector(state, video.ytVideoId),
+  );
 
   if (!video) return null;
 
@@ -53,8 +38,7 @@ const VideoComponent = ({ videoId }: VideoComponentProps) => {
           Shared by: <b>{video.user.fullName}</b>
         </div>
         <div>Email: {video.user.email}</div>
-        <div>Description:</div>
-        <div>{ytVideo?.description}</div>
+        <div className={styles.description}>{ytVideo?.description}</div>
       </div>
     </div>
   );
