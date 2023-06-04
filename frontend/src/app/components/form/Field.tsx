@@ -7,11 +7,18 @@ import styles from './Field.module.css';
 type FieldProps = {
   name: string;
   label?: string;
+  placeholder?: string;
   className?: string;
   [otherProp: string]: any;
 };
 
-const Field = ({ name, label, className, ...props }: FieldProps) => (
+const Field = ({
+  name,
+  label,
+  placeholder,
+  className,
+  ...props
+}: FieldProps) => (
   <div className={classNames(styles.field, className)}>
     {!!label && (
       <FormLabel htmlFor={name} className={styles.label}>
@@ -21,7 +28,7 @@ const Field = ({ name, label, className, ...props }: FieldProps) => (
     <FinalFormField name={name} {...props}>
       {({ input, meta }) => (
         <div className={styles.input}>
-          <input {...input} id={input.name} />
+          <input {...input} id={input.name} placeholder={placeholder} />
           {meta.error && meta.touched && (
             <div className={styles.error}>{meta.error}</div>
           )}

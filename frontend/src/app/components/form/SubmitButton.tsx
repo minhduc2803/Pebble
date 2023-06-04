@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import styles from './SubmitButton.module.css';
 
 const SubmitButton = ({ children }: { children: ReactNode }) => (
-  <Button variant="light" type="submit" className={styles.button}>
+  <Button variant="warning" type="submit" className={styles.button}>
     {children}
   </Button>
 );

@@ -39,19 +39,19 @@ const RegisterForm = ({ className, onSuccess }: RegisterFormProps) => {
         <Field
           name="fullName"
           component="input"
-          label="Full Name"
+          placeholder="Full Name"
           validate={required('Full Name')}
         />
         <Field
           name="email"
           component="input"
-          label="Email"
+          placeholder="Email"
           validate={validateEmail}
         />
         <Field
           name="password"
           component="input"
-          label="Password"
+          placeholder="Password"
           type="password"
           validate={validatePassword}
         />

@@ -6,10 +6,11 @@ import { Button, Modal } from 'react-bootstrap';
 import { shareVideo } from 'app/actions/video';
 import { VideoFormData } from 'app/types/video';
 import { alertSuccess } from 'app/utils/alert';
-
 import Field from 'app/components/form/Field';
 import SubmitButton from 'app/components/form/SubmitButton';
 import { required } from 'app/utils/validationUtils';
+import { useAppSelector } from 'app/redux/types';
+import { userSelector } from 'app/selectors/user';
 
 import styles from './ShareVideoModal.module.css';
 
@@ -18,6 +19,7 @@ type ShareVideoModalProps = {
 };
 
 const ShareVideoModal = ({ className }: ShareVideoModalProps) => {
+  const user = useAppSelector(userSelector);
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
 
@@ -39,22 +41,22 @@ const ShareVideoModal = ({ className }: ShareVideoModalProps) => {
         Share a video
       </Button>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Share a Youtube video</Modal.Title>
+        <Modal.Header closeButton className={styles.modalHeader}>
+          Hi&nbsp;<b>{user.fullName}</b>
         </Modal.Header>
         <Form
           onSubmit={onSubmit}
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-              <Modal.Body>
+              <Modal.Body className={styles.modalBody}>
                 <Field
                   name="url"
                   component="input"
-                  label="Youtube URL"
+                  placeholder="What's Youtube URL you want to share?"
                   validate={required('Youtube URL')}
                 />
               </Modal.Body>
-              <Modal.Footer className={styles.footer}>
+              <Modal.Footer className={styles.modalFooter}>
                 <SubmitButton>Share</SubmitButton>
               </Modal.Footer>
             </form>

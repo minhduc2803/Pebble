@@ -25,13 +25,13 @@ const LoginForm = ({ className, onSuccess }: LoginFormProps) => {
         <Field
           name="email"
           component="input"
-          label="Email"
+          placeholder="Email"
           validate={required('Email')}
         />
         <Field
           name="password"
           component="input"
-          label="Password"
+          placeholder="Password"
           type="password"
           validate={required('Password')}
         />

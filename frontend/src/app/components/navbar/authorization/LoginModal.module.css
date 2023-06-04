@@ -4,6 +4,11 @@
   padding: 8px 0;
 }
 
+.form :global(.modal-body) {
+  padding: 30px;
+}
+
+
 .modalTitle {
   width: 100%;
   padding: 0 16px;
