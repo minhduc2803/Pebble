@@ -37,21 +37,21 @@ describe('RegisterForm', () => {
     expect(screen.queryByText(passwordError)).toBeInTheDocument();
     expect(screen.queryByText(fullNameError)).toBeInTheDocument();
 
-    await user.type(screen.getByLabelText('Email'), 'invalid email');
+    await user.type(screen.getByPlaceholderText('Email'), 'invalid email');
     await user.click(screen.getByText('Register'));
 
     expect(screen.queryByText(emailError)).toBeInTheDocument();
 
-    await user.type(screen.getByLabelText('Password'), 'short');
+    await user.type(screen.getByPlaceholderText('Password'), 'short');
     await user.click(screen.getByText('Register'));
 
     expect(screen.queryByText(passwordError)).toBeInTheDocument();
 
-    await user.clear(screen.getByLabelText('Email'));
-    await user.type(screen.getByLabelText('Email'), 'valid@email.com');
-    await user.clear(screen.getByLabelText('Password'));
-    await user.type(screen.getByLabelText('Password'), 'valid_password');
-    await user.type(screen.getByLabelText('Full Name'), 'full name');
+    await user.clear(screen.getByPlaceholderText('Email'));
+    await user.type(screen.getByPlaceholderText('Email'), 'valid@email.com');
+    await user.clear(screen.getByPlaceholderText('Password'));
+    await user.type(screen.getByPlaceholderText('Password'), 'valid_password');
+    await user.type(screen.getByPlaceholderText('Full Name'), 'full name');
 
     await user.click(screen.getByText('Register'));
 

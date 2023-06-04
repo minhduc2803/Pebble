@@ -33,8 +33,8 @@ describe('LoginForm', () => {
     expect(screen.queryByText('Email is required')).toBeInTheDocument();
     expect(screen.queryByText('Password is required')).toBeInTheDocument();
 
-    await user.type(screen.getByLabelText('Email'), 'test@example.com');
-    await user.type(screen.getByLabelText('Password'), 'password123');
+    await user.type(screen.getByPlaceholderText('Email'), 'test@example.com');
+    await user.type(screen.getByPlaceholderText('Password'), 'password123');
 
     await user.click(screen.getByText('Login'));
 
