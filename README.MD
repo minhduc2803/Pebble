@@ -46,6 +46,9 @@ cp .env.example .env
 cp .env.frontend.example .env.frontend
 ```
 
+The `API_KEY` on `.env.example` and the `REACT_APP_API_KEY` on `.env.frontend.example` are both my public Youtube API key, you can change to use your own key.
+You can follow [this tutorial](https://blog.hubspot.com/website/how-to-get-youtube-api-key) to create your own public API key.
+
 ### 2.4. Run docker-compose
 
 ```
@@ -113,16 +116,16 @@ Please make sure to add "Any protocol over port 8000", other wise the websocket 
 
 ### 5.1. Browsing videos with pagination
 ![browsing](images/browsing.png)
-![pagination](images/pagination.png)
-### 5.2. Login with validation / Keep login credential in `localStorage` / Logout
+### 5.2. Login / Keep login credential in `localStorage`
 ![login](images/login.png)
-### 5.3. Register with validation
+### 5.3. Register
 ![register](images/register.png)
-### 5.4. Share a video with validation
+### 5.4. Share a video
 ![shareVideo](images/shareVideo.png)
-![shareVideo](images/shareSuccess.png)
+![shareVideoSuccess](images/shareSuccess.png)
+![shareVideoFailed](images/shareFailed.png)
 ### 5.5. Instant notification when someone shares a video
-![notify](images/instanceNotify.png)
+![notify](images/instantNotify.png)
 
 ## 6. Troubleshooting
 
