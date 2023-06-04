@@ -14,37 +14,7 @@ RSpec.describe Video, type: :model do
   describe 'validations' do
     subject { build(:video) }
 
-    it { should validate_presence_of(:url) }
-    it { should validate_presence_of(:title) }
-
-    describe '#validate_youtube_url' do
-      context 'when the URL is a valid YouTube embed URL' do
-        let(:video) { build(:video, url: 'https://www.youtube.com/embed/abc123') }
-
-        it 'is valid' do
-          video.valid?
-          expect(video.errors[:url]).to be_empty
-        end
-      end
-
-      context 'when the URL is a valid YouTube watch URL' do
-        let(:video) { build(:video, url: 'https://www.youtube.com/watch?v=abc123') }
-
-        it 'is valid' do
-          video.valid?
-          expect(video.errors[:url]).to be_empty
-        end
-      end
-
-      context 'when the URL is a valid YouTube URL but not an embed or watch URL' do
-        let(:video) { build(:video, url: 'https://www.youtube.com/abc123') }
-
-        it 'is not valid' do
-          video.valid?
-          expect(video.errors[:url]).to include('must be a valid embed YouTube URL')
-        end
-      end
-    end
+    it { should validate_presence_of(:yt_video_id) }
   end
 
   describe 'associations' do

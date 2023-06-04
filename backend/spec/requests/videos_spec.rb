@@ -26,6 +26,7 @@ RSpec.describe VideosController, type: :request do
       expect(response_body['videos'].length).to eq(3)
       [video_3, video_2, video_1].each_with_index do |video, index|
         expect(response_body['videos'][index]['id']).to eq(video.id)
+        expect(response_body['videos'][index]['yt_video_id']).to eq(video.yt_video_id)
       end
       [user_3, user_2, user_1].each_with_index do |user, index|
         expect(response_body['videos'][index]['user']['id']).to eq(user.id)
@@ -41,14 +42,22 @@ RSpec.describe VideosController, type: :request do
       'Authorization' => "Bearer #{auth_token}",
       'Content-Type' => 'application/json'
     }}
+    let(:yt_video_id) { 'kK-gcaHoM8M' }
+    let(:title) { 'Video Title' }
+    let(:returned_yt_video) {{
+      title: title
+    }.with_indifferent_access}
+
+    before do
+      yt_video_double = double("Yt::Video")
+      allow(yt_video_double).to receive(:title).and_return(title)
+      allow(Yt::Video).to receive(:new).with(id: yt_video_id).and_return(yt_video_double)
+    end
+
     context 'when valid video parameters are provided' do
       let(:valid_video_params) do
         {
-          video: {
-            url: 'https://www.youtube.com/watch?v=kK-gcaHoM8M',
-            title: 'Hotpot in SaiGon',
-            description: 'This place is really good',
-          }
+          url: "https://www.youtube.com/watch?v=#{yt_video_id}",
         }
       end
 
@@ -58,9 +67,8 @@ RSpec.describe VideosController, type: :request do
         end.to change(Video, :count).by(1)
 
         expect(response).to have_http_status(:created)
-        expect(response_body['url']).to eq(valid_video_params[:video][:url])
-        expect(response_body['title']).to eq(valid_video_params[:video][:title])
-        expect(response_body['description']).to eq(valid_video_params[:video][:description])
+        expect(response_body['yt_video_id']).to eq(yt_video_id)
+        expect(response_body['yt_video_id']).to eq('kK-gcaHoM8M')
         expect(response_body['user']['id']).to eq(user_1.id)
         expect(response_body['user']['full_name']).to eq(user_1.full_name)
         expect(response_body['user']['email']).to eq(user_1.email)
@@ -72,20 +80,28 @@ RSpec.describe VideosController, type: :request do
           post "/videos", params: valid_video_params.to_json, headers: headers
         end
       }.to have_broadcasted_to('video_channel').from_channel(VideosChannel).with do |data|
-        expect(data['url']).to eq(video_params[:video][:url])
-        expect(data['title']).to eq(video_params[:video][:title])
+        expect(data['title']).to eq(title)
+        expect(data['yt_video_id']).to eq(yt_video_id)
+        expect(data['user']['id']).to eq(user_1.id)
+        expect(data['user']['full_name']).to eq(user_1.full_name)
+        expect(data['user']['email']).to eq(user_1.email)
       end
       end
     end
 
-    context 'when invalid video parameters are provided' do
+    context 'when url is not valid youtube link' do
       let(:invalid_video_params) do
         {
-          video: {
-            url: 'https://www.randomlink.com',
-            title: '',
-          }
+          url: 'https://www.randomlink.com',
         }
+      end
+
+      before do
+        yt_video_double = double("Yt::Video")
+        allow(yt_video_double).to receive(:title) do
+          raise StandardError, "Error retrieving video title"
+        end
+        allow(Yt::Video).to receive(:new).with(id: nil).and_return(yt_video_double)
       end
 
       it 'returns error' do
@@ -94,8 +110,7 @@ RSpec.describe VideosController, type: :request do
         end.not_to change(Video, :count)
 
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response_body['errors']).to include("Url must be a valid embed YouTube URL")
-        expect(response_body['errors']).to include("Title can't be blank")
+        expect(response_body['errors']).to include("Url is not valid, can not retrieve data from this URL.")
       end
     end
     

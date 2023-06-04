@@ -13,5 +13,5 @@ class Video < ApplicationRecord
   belongs_to :user
   scope :of_user, -> (user) { where(user_id: user.id)}
 
-  # validates_presence_of :yt_video_id
+  validates_presence_of :yt_video_id
 end

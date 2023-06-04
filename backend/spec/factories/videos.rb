@@ -10,9 +10,7 @@
 #
 FactoryBot.define do
   factory :video do
-    url      { "#{Video::EMBED_URL}#{Faker::Movie.name}" }
-    title   { Faker::Movie.name }
-    description { Faker::Movie.quote }
+    yt_video_id      { Faker::Movie.name }
     association :user, factory: :user
   end
 end
