@@ -16,6 +16,7 @@
 
 class User < ApplicationRecord
   has_many :videos, dependent: :destroy
+  has_one :like, dependent: :destroy
   has_secure_password
 
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }

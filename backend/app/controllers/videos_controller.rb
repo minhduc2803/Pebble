@@ -1,7 +1,6 @@
 class VideosController < ApplicationController
   skip_before_action :authenticate_user,  only: [:index]
   before_action :authorize_user, only: [:create]
-
   # GET /videos
   def index
     videos = policy_scope(Video).includes(:user).order(created_at: :desc)

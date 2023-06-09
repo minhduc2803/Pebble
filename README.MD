@@ -1,6 +1,6 @@
 # Pebble - sharing video app
 
-Taking a look at the demo here: http://pebble-app.koreacentral.cloudapp.azure.com/
+Taking a look at the demo here: <del>http://pebble-app.koreacentral.cloudapp.azure.com/</del> (I deleted the server, this link does not work anymore).
 
 ## 1. Tech stack
 - Rails 7

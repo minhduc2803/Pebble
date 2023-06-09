@@ -11,6 +11,7 @@
 
 class Video < ApplicationRecord
   belongs_to :user
+  has_one :like, dependent: :destroy
   scope :of_user, -> (user) { where(user_id: user.id)}
 
   validates_presence_of :yt_video_id
